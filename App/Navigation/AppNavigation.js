@@ -15,6 +15,7 @@ const Tab = createMaterialTopTabNavigator();
 const TabNavigation = () => {
   return (
     <Tab.Navigator
+      swipeEnabled={false}
       tabBarOptions={{
         labelStyle: apply('font-bold'),
         activeTintColor: apply('white'),

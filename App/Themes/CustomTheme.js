@@ -1,8 +1,8 @@
 export default {
   colors: {
-    primary: '#E43F5A',
-    secondary: '#1F4068',
+    red: '#E43F5A',
     dark: '#162447',
+    secondary: '#1F4068',
   },
   font: {
     family: {
@@ -14,6 +14,9 @@ export default {
       medium: 'Ubuntu-Medium',
       mediumitalic: 'Ubuntu-MediumItalic',
       regular: 'Ubuntu-Regular',
+    },
+    size: {
+      xxs: 10,
     },
   },
 };
