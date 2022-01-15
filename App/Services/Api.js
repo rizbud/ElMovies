@@ -21,21 +21,25 @@ const create = (baseURL = Env.BASE_URL) => {
   const getUpcomingMovie = () => api.get(`/movie/upcoming?api_key=${api_key}`);
   const getPopularMovie = () => api.get(`/movie/popular?api_key=${api_key}`);
   const getTopRatedMovie = () => api.get(`/movie/top_rated?api_key=${api_key}`);
+  const getDetailMovie = (id) => api.get(`/movie/${id}?api_key=${api_key}`);
 
   const getOnAirTV = () => api.get(`/tv/on_the_air?api_key=${api_key}`);
   const getAirTodayTV = () => api.get(`/tv/airing_today?api_key=${api_key}`);
   const getPopularTV = () => api.get(`/tv/popular?api_key=${api_key}`);
   const getTopRatedTV = () => api.get(`/tv/top_rated?api_key=${api_key}`);
+  const getDetailTV = (id) => api.get(`/tv/${id}?api_key=${api_key}`);
 
   return {
     getNowPlayingMovie,
     getUpcomingMovie,
     getPopularMovie,
     getTopRatedMovie,
+    getDetailMovie,
     getOnAirTV,
     getAirTodayTV,
     getPopularTV,
     getTopRatedTV,
+    getDetailTV,
 
     api,
   };

@@ -48,3 +48,15 @@ export function* getTopRatedMovie(api, action) {
     yield put(MovieActions.topRatedFailure(response));
   }
 }
+
+export function* getDetailMovie(api, action) {
+  const {data} = action;
+  const response = yield call(api.getDetailMovie, data);
+
+  // success?
+  if (response.ok) {
+    yield put(MovieActions.detailSuccess(response.data));
+  } else {
+    yield put(MovieActions.detailFailure(response));
+  }
+}

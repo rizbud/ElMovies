@@ -12,6 +12,7 @@ import {
   getUpcomingMovie,
   getPopularMovie,
   getTopRatedMovie,
+  getDetailMovie,
 } from './MovieSagas';
 
 /* ------------- API ------------- */
@@ -28,5 +29,6 @@ export default function* root() {
     takeLatest(MovieTypes.UPCOMING_REQUEST, getUpcomingMovie, api),
     takeLatest(MovieTypes.POPULAR_REQUEST, getPopularMovie, api),
     takeLatest(MovieTypes.TOP_RATED_REQUEST, getTopRatedMovie, api),
+    takeLatest(MovieTypes.DETAIL_REQUEST, getDetailMovie, api),
   ]);
 }

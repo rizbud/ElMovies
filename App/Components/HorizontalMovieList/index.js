@@ -6,7 +6,7 @@ import styles from './style';
 import {apply} from '@Themes/OsmiProvider';
 
 const HorizontalMovieList = (props) => {
-  const {data, title, isLoading = true} = props;
+  const {data, title, isLoading, type} = props;
 
   return (
     <View style={apply('mt-4')}>
@@ -19,7 +19,9 @@ const HorizontalMovieList = (props) => {
         bounces={false}
         contentContainerStyle={styles.container}
         keyExtractor={(_, id) => String(id)}
-        renderItem={({item}) => <MovieCard item={item} isLoading={isLoading} />}
+        renderItem={({item}) => (
+          <MovieCard item={item} isLoading={isLoading} type={type} />
+        )}
         showsHorizontalScrollIndicator={false}
       />
     </View>

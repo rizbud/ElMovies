@@ -1,19 +1,29 @@
+import {useEffect} from 'react';
 import {View, ScrollView, Text} from 'react-native';
-import {HorizontalMovieList} from '@Components';
+import {connect} from 'react-redux';
+import MovieActions from '@Reduxes/MovieRedux';
 import Image from 'react-native-fast-image';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Shimmer} from '@Components';
 import Images from '@Images';
+import {minutesToTime} from '@Lib/TextUtils';
 
 import {apply} from '@Themes/OsmiProvider';
 import styles from './style';
 import {scaleWidth} from 'osmicsx';
-import {minutesToTime} from '@Lib/TextUtils';
 
 const Detail = (props) => {
   const {
     route: {params},
+    detail,
+    getDetail,
   } = props;
+  const {data} = detail;
+
+  useEffect(() => {
+    getDetail(params?.id);
+  }, []);
 
   return (
     <ScrollView
@@ -22,9 +32,9 @@ const Detail = (props) => {
       contentContainerStyle={apply('pb-4')}>
       <Image
         source={{
-          uri:
-            `${Images.prefix}${params?.backdrop_path}` ||
-            'https://bodybigsize.com/wp-content/uploads/2020/03/noimage-14.png',
+          uri: params?.backdrop_path
+            ? `${Images.prefix}${params?.backdrop_path}`
+            : 'https://bodybigsize.com/wp-content/uploads/2020/03/noimage-14.png',
         }}
         style={[styles.backdrop, {height: scaleWidth(56)}]}
         resizeMode="stretch"
@@ -40,41 +50,62 @@ const Detail = (props) => {
               uri: `${Images.prefix}${params?.poster_path}`,
             }}
           />
-          <View style={apply('mt-2')}>
-            <Text style={styles.title}>Hello world</Text>
-            <Text style={styles.tagline}>The Multiverse unleashed.</Text>
-            <Text style={styles.genres}>
-              {[{name: 'Action'}, {name: 'Adventure'}].map(
-                (item, index) => `${item?.name}${index !== 1 ? ', ' : ''}`,
-              )}
-            </Text>
+          <View style={apply('mt-2 flex')}>
+            <Text style={styles.title}>{params?.original_title}</Text>
+            {detail?.fetching ? (
+              <Shimmer style={apply('w-150 h-14 mb-2 mt-1')} />
+            ) : (
+              <Text style={styles.tagline}>{data?.tagline}</Text>
+            )}
+            {detail?.fetching ? (
+              <Shimmer style={apply('full h-14 mb-2 mt-1')} />
+            ) : (
+              <Text style={styles.genres}>
+                {data?.genres.map(
+                  (item, index) =>
+                    `${item?.name}${
+                      index !== data?.genres?.length - 1 ? ', ' : ''
+                    }`,
+                )}
+              </Text>
+            )}
             <View style={styles.rowCenter}>
-              <Icon size={14} name="clock" color={apply('gray-500')} />
-              <Text style={styles.date}>{minutesToTime(112)}</Text>
+              {detail?.fetching ? (
+                <Shimmer style={apply('w-50 h-12 mb-1')} />
+              ) : (
+                <>
+                  <Icon size={14} name="clock" color={apply('gray-500')} />
+                  <Text style={styles.date}>
+                    {minutesToTime(data?.runtime)}
+                  </Text>
+                </>
+              )}
             </View>
             <View style={styles.rowCenter}>
               <Icon size={14} name="calendar" color={apply('gray-500')} />
               <Text style={styles.date}>
-                {moment('2021-12-15').format('DD MMMM YYYY')}
+                {moment(params?.release_date).format('DD MMMM YYYY')}
               </Text>
             </View>
             <View style={styles.rowCenter}>
               <Icon size={14} name="star" color={apply('gray-500')} />
-              <Text style={styles.date}>7.8</Text>
+              <Text style={styles.date}>{params?.vote_average}</Text>
             </View>
           </View>
         </View>
         <Text style={styles.label}>Overview:</Text>
-        <Text style={styles.overview}>
-          Peter Parker is unmasked and no longer able to separate his normal
-          life from the high-stakes of being a super-hero. When he asks for help
-          from Doctor Strange the stakes become even more dangerous, forcing him
-          to discover what it truly means to be Spider-Man.
-        </Text>
+        <Text style={styles.overview}>{params?.overview}</Text>
       </View>
-      <HorizontalMovieList title="Rekomendasi" data={[1, 2, 3]} />
     </ScrollView>
   );
 };
 
-export default Detail;
+const mapStateTopProps = (state) => ({
+  detail: state.movie.detail,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getDetail: (id) => dispatch(MovieActions.detailRequest(id)),
+});
+
+export default connect(mapStateTopProps, mapDispatchToProps)(Detail);

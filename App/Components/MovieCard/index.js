@@ -12,13 +12,13 @@ import {scaleWidth} from 'osmicsx';
 import {apply} from '@Themes/OsmiProvider';
 
 const MovieCard = (props) => {
-  const {item, isLoading} = props;
+  const {item, isLoading, type} = props;
   const navigation = useNavigation();
 
   return (
     <TouchableOpacity
       activeOpacity={0.9}
-      onPress={() => navigation.push('Detail', item)}
+      onPress={() => navigation.navigate('Detail', {...item, type})}
       style={styles.container}>
       {isLoading ? (
         <Shimmer style={[styles.image, {height: scaleWidth(50)}]} />

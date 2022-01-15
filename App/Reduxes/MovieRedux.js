@@ -19,6 +19,10 @@ const {Types, Creators} = createActions({
   topRatedRequest: ['data'],
   topRatedSuccess: ['data'],
   topRatedFailure: ['error'],
+
+  detailRequest: ['data'],
+  detailSuccess: ['data'],
+  detailFailure: ['error'],
 });
 
 export const MovieTypes = Types;
@@ -31,6 +35,7 @@ export const INITIAL_STATE = Immutable({
   upcoming: {data: [], fetching: false, error: null},
   popular: {data: [], fetching: false, error: null},
   topRated: {data: [], fetching: false, error: null},
+  detail: {data: null, fetching: false, error: null},
 });
 
 /* ------------- Reducers ------------- */
@@ -151,6 +156,35 @@ export const topRatedFailure = (state, {error}) =>
     },
   });
 
+export const detailRequest = (state, {data}) =>
+  state.merge({
+    ...state,
+    detail: {
+      ...state.detail,
+      fetching: true,
+      error: null,
+    },
+  });
+export const detailSuccess = (state, {data}) =>
+  state.merge({
+    ...state,
+    detail: {
+      ...state.detail,
+      data,
+      fetching: false,
+      error: null,
+    },
+  });
+export const detailFailure = (state, {error}) =>
+  state.merge({
+    ...state,
+    detail: {
+      ...state.detail,
+      fetching: false,
+      error,
+    },
+  });
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -169,4 +203,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.TOP_RATED_REQUEST]: topRatedRequest,
   [Types.TOP_RATED_SUCCESS]: topRatedSuccess,
   [Types.TOP_RATED_FAILURE]: topRatedFailure,
+
+  [Types.DETAIL_REQUEST]: detailRequest,
+  [Types.DETAIL_SUCCESS]: detailSuccess,
+  [Types.DETAIL_FAILURE]: detailFailure,
 });
