@@ -15,15 +15,15 @@
     [
       "module-resolver",
       {
+        "root": ["./App"],
         "alias": {
           "@Components": "./App/Components",
           "@Config": "./App/Config",
           "@Containers": "./App/Containers",
-          "@Fixtures": "./App/Fixtures",
           "@Images": "./App/Images",
           "@Lib": "./App/Lib",
           "@Navigation": "./App/Navigation",
-          "@Redux": "./App/Redux",
+          "@Reduxes": "./App/Reduxes",
           "@Sagas": "./App/Sagas",
           "@Services": "./App/Services",
           "@Themes": "./App/Themes"

@@ -1,25 +1,22 @@
 export default {
   colors: {
-    primary: "#f9bc15",
-    "soft-secondary": "rgba(53, 73, 94, --osmi-opacity)"
-  },
-  spacing: {
-    "30": 120
-  },
-  border: {
-    width: {
-      30: 120
-    },
-    radius: {
-      "super-xl": 120
-    }
+    red: '#E43F5A',
+    dark: '#162447',
+    secondary: '#1F4068',
   },
   font: {
     family: {
-      "font-regular": "OpenSans-Regular"
+      bold: 'Ubuntu-Bold',
+      bolditalic: 'Ubuntu-BoldItalic',
+      italic: 'Ubuntu-Italic',
+      light: 'Ubuntu-Light',
+      lightitalic: 'Ubuntu-LightItalic',
+      medium: 'Ubuntu-Medium',
+      mediumitalic: 'Ubuntu-MediumItalic',
+      regular: 'Ubuntu-Regular',
     },
     size: {
-      "xxl": 40
-    }
-  }
-}
+      xxs: 10,
+    },
+  },
+};
