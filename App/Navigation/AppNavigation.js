@@ -17,6 +17,7 @@ const TabNavigation = () => {
   return (
     <Tab.Navigator
       swipeEnabled={false}
+      lazy
       tabBarOptions={{
         labelStyle: apply('font-bold'),
         activeTintColor: 'white',

@@ -32,12 +32,14 @@ const MovieCard = (props) => {
             resizeMode="stretch"
           />
           <Text numberOfLines={2} style={styles.title}>
-            {item?.title}
+            {item?.title || item?.name}
           </Text>
           <View style={styles.row}>
             <Icon name="calendar" color={apply('gray-500')} />
             <Text style={styles.date}>
-              {moment(item?.release_date).format('DD MMM YYYY')}
+              {moment(item?.release_date || item?.first_air_date).format(
+                'DD MMM YYYY',
+              )}
             </Text>
           </View>
         </>

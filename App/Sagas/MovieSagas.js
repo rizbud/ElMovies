@@ -31,9 +31,9 @@ export function* getPopularMovie(api, action) {
 
   // success?
   if (response.ok) {
-    yield put(MovieActions.popularSuccess(response.data?.results));
+    yield put(MovieActions.popularMovieSuccess(response.data?.results));
   } else {
-    yield put(MovieActions.popularFailure(response));
+    yield put(MovieActions.popularMovieFailure(response));
   }
 }
 
@@ -43,9 +43,9 @@ export function* getTopRatedMovie(api, action) {
 
   // success?
   if (response.ok) {
-    yield put(MovieActions.topRatedSuccess(response.data?.results));
+    yield put(MovieActions.topRatedMovieSuccess(response.data?.results));
   } else {
-    yield put(MovieActions.topRatedFailure(response));
+    yield put(MovieActions.topRatedMovieFailure(response));
   }
 }
 
@@ -55,8 +55,8 @@ export function* getDetailMovie(api, action) {
 
   // success?
   if (response.ok) {
-    yield put(MovieActions.detailSuccess(response.data));
+    yield put(MovieActions.detailMovieSuccess(response.data));
   } else {
-    yield put(MovieActions.detailFailure(response));
+    yield put(MovieActions.detailMovieFailure(response));
   }
 }

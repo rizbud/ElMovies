@@ -1,7 +1,8 @@
-import {useEffect} from 'react';
+import {memo, useEffect} from 'react';
 import {View, ScrollView, Text} from 'react-native';
 import {connect} from 'react-redux';
 import MovieActions from '@Reduxes/MovieRedux';
+import TVActions from '@Reduxes/TVRedux';
 import Image from 'react-native-fast-image';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -16,14 +17,28 @@ import {scaleWidth} from 'osmicsx';
 const Detail = (props) => {
   const {
     route: {params},
-    detail,
-    getDetail,
+    detailMovie,
+    detailTV,
+    getDetailMovie,
+    getDetailTV,
   } = props;
-  const {data} = detail;
+  const detail = params?.type === 'movie' ? detailMovie : detailTV;
+  const getDetail = params?.type === 'movie' ? getDetailMovie : getDetailTV;
+  const data = detail?.data;
 
   useEffect(() => {
     getDetail(params?.id);
   }, []);
+
+  const RowShimmer = memo(({children}) => (
+    <View style={styles.rowStart}>
+      {detail?.fetching ? (
+        <Shimmer style={apply('w-50 h-12 mb-1')} />
+      ) : (
+        children
+      )}
+    </View>
+  ));
 
   return (
     <ScrollView
@@ -49,13 +64,18 @@ const Detail = (props) => {
             source={{
               uri: `${Images.prefix}${params?.poster_path}`,
             }}
+            resizeMode="stretch"
           />
           <View style={apply('mt-2 flex')}>
-            <Text style={styles.title}>{params?.original_title}</Text>
+            <Text style={styles.title}>
+              {params?.original_title || params?.name}
+            </Text>
             {detail?.fetching ? (
               <Shimmer style={apply('w-150 h-14 mb-2 mt-1')} />
             ) : (
-              <Text style={styles.tagline}>{data?.tagline}</Text>
+              data?.tagline !== '' && (
+                <Text style={styles.tagline}>{data?.tagline}</Text>
+              )
             )}
             {detail?.fetching ? (
               <Shimmer style={apply('full h-14 mb-2 mt-1')} />
@@ -69,28 +89,30 @@ const Detail = (props) => {
                 )}
               </Text>
             )}
-            <View style={styles.rowCenter}>
-              {detail?.fetching ? (
-                <Shimmer style={apply('w-50 h-12 mb-1')} />
-              ) : (
-                <>
-                  <Icon size={14} name="clock" color={apply('gray-500')} />
-                  <Text style={styles.date}>
-                    {minutesToTime(data?.runtime)}
-                  </Text>
-                </>
-              )}
-            </View>
-            <View style={styles.rowCenter}>
+            {params?.type === 'movie' && (
+              <RowShimmer>
+                <Icon size={14} name="clock" color={apply('gray-500')} />
+                <Text style={[styles.date, {marginTop: -2}]}>
+                  {minutesToTime(data?.runtime)}
+                </Text>
+              </RowShimmer>
+            )}
+            <RowShimmer>
               <Icon size={14} name="calendar" color={apply('gray-500')} />
-              <Text style={styles.date}>
-                {moment(params?.release_date).format('DD MMMM YYYY')}
+              <Text style={[styles.date, {marginTop: -2}]}>
+                {moment(data?.release_date || data?.first_air_date).format(
+                  'DD MMMM YYYY',
+                )}
+                {data?.last_air_date &&
+                  ` - ${moment(data?.last_air_date).format('DD MMMM YYYY')}`}
               </Text>
-            </View>
-            <View style={styles.rowCenter}>
+            </RowShimmer>
+            <RowShimmer>
               <Icon size={14} name="star" color={apply('gray-500')} />
-              <Text style={styles.date}>{params?.vote_average}</Text>
-            </View>
+              <Text style={[styles.date, {marginTop: -2}]}>
+                {params?.vote_average}
+              </Text>
+            </RowShimmer>
           </View>
         </View>
         <Text style={styles.label}>Overview:</Text>
@@ -101,11 +123,13 @@ const Detail = (props) => {
 };
 
 const mapStateTopProps = (state) => ({
-  detail: state.movie.detail,
+  detailMovie: state.movie.detailMovie,
+  detailTV: state.tv.detailTV,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getDetail: (id) => dispatch(MovieActions.detailRequest(id)),
+  getDetailMovie: (id) => dispatch(MovieActions.detailMovieRequest(id)),
+  getDetailTV: (id) => dispatch(TVActions.detailTVRequest(id)),
 });
 
 export default connect(mapStateTopProps, mapDispatchToProps)(Detail);

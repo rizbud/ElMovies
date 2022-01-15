@@ -8,7 +8,7 @@ export default connect({
   tagline: 'font-italic mb-2 text-gray-300',
   genres: 'text-white  font-regular mb-2',
   date: 'font-regular text-gray-500 text-sm ml-1',
-  rowCenter: 'row items-center',
+  rowStart: 'row items-start',
   label: 'text-white font-medium text-base',
   overview: 'text-white font-regular leading-5',
 });

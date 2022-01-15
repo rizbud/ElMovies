@@ -12,17 +12,17 @@ const {Types, Creators} = createActions({
   upcomingSuccess: ['data'],
   upcomingFailure: ['error'],
 
-  popularRequest: ['data'],
-  popularSuccess: ['data'],
-  popularFailure: ['error'],
+  popularMovieRequest: ['data'],
+  popularMovieSuccess: ['data'],
+  popularMovieFailure: ['error'],
 
-  topRatedRequest: ['data'],
-  topRatedSuccess: ['data'],
-  topRatedFailure: ['error'],
+  topRatedMovieRequest: ['data'],
+  topRatedMovieSuccess: ['data'],
+  topRatedMovieFailure: ['error'],
 
-  detailRequest: ['data'],
-  detailSuccess: ['data'],
-  detailFailure: ['error'],
+  detailMovieRequest: ['data'],
+  detailMovieSuccess: ['data'],
+  detailMovieFailure: ['error'],
 });
 
 export const MovieTypes = Types;
@@ -33,9 +33,9 @@ export default Creators;
 export const INITIAL_STATE = Immutable({
   nowPlaying: {data: [], fetching: false, error: null},
   upcoming: {data: [], fetching: false, error: null},
-  popular: {data: [], fetching: false, error: null},
-  topRated: {data: [], fetching: false, error: null},
-  detail: {data: null, fetching: false, error: null},
+  popularMovie: {data: [], fetching: false, error: null},
+  topRatedMovie: {data: [], fetching: false, error: null},
+  detailMovie: {data: null, fetching: false, error: null},
 });
 
 /* ------------- Reducers ------------- */
@@ -98,88 +98,88 @@ export const upcomingFailure = (state, {error}) =>
     },
   });
 
-export const popularRequest = (state, {data}) =>
+export const popularMovieRequest = (state, {data}) =>
   state.merge({
     ...state,
-    popular: {
-      ...state.popular,
+    popularMovie: {
+      ...state.popularMovie,
       fetching: true,
       error: null,
     },
   });
-export const popularSuccess = (state, {data}) =>
+export const popularMovieSuccess = (state, {data}) =>
   state.merge({
     ...state,
-    popular: {
-      ...state.popular,
+    popularMovie: {
+      ...state.popularMovie,
       data,
       fetching: false,
       error: null,
     },
   });
-export const popularFailure = (state, {error}) =>
+export const popularMovieFailure = (state, {error}) =>
   state.merge({
     ...state,
-    popular: {
-      ...state.popular,
+    popularMovie: {
+      ...state.popularMovie,
       fetching: false,
       error,
     },
   });
 
-export const topRatedRequest = (state, {data}) =>
+export const topRatedMovieRequest = (state, {data}) =>
   state.merge({
     ...state,
-    topRated: {
-      ...state.topRated,
+    topRatedMovie: {
+      ...state.topRatedMovie,
       fetching: true,
       error: null,
     },
   });
-export const topRatedSuccess = (state, {data}) =>
+export const topRatedMovieSuccess = (state, {data}) =>
   state.merge({
     ...state,
-    topRated: {
-      ...state.topRated,
+    topRatedMovie: {
+      ...state.topRatedMovie,
       data,
       fetching: false,
       error: null,
     },
   });
-export const topRatedFailure = (state, {error}) =>
+export const topRatedMovieFailure = (state, {error}) =>
   state.merge({
     ...state,
-    topRated: {
-      ...state.topRated,
+    topRatedMovie: {
+      ...state.topRatedMovie,
       fetching: false,
       error,
     },
   });
 
-export const detailRequest = (state, {data}) =>
+export const detailMovieRequest = (state, {data}) =>
   state.merge({
     ...state,
-    detail: {
-      ...state.detail,
+    detailMovie: {
+      ...state.detailMovie,
       fetching: true,
       error: null,
     },
   });
-export const detailSuccess = (state, {data}) =>
+export const detailMovieSuccess = (state, {data}) =>
   state.merge({
     ...state,
-    detail: {
-      ...state.detail,
+    detailMovie: {
+      ...state.detailMovie,
       data,
       fetching: false,
       error: null,
     },
   });
-export const detailFailure = (state, {error}) =>
+export const detailMovieFailure = (state, {error}) =>
   state.merge({
     ...state,
-    detail: {
-      ...state.detail,
+    detailMovie: {
+      ...state.detailMovie,
       fetching: false,
       error,
     },
@@ -196,15 +196,15 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.UPCOMING_SUCCESS]: upcomingSuccess,
   [Types.UPCOMING_FAILURE]: upcomingFailure,
 
-  [Types.POPULAR_REQUEST]: popularRequest,
-  [Types.POPULAR_SUCCESS]: popularSuccess,
-  [Types.POPULAR_FAILURE]: popularFailure,
+  [Types.POPULAR_MOVIE_REQUEST]: popularMovieRequest,
+  [Types.POPULAR_MOVIE_SUCCESS]: popularMovieSuccess,
+  [Types.POPULAR_MOVIE_FAILURE]: popularMovieFailure,
 
-  [Types.TOP_RATED_REQUEST]: topRatedRequest,
-  [Types.TOP_RATED_SUCCESS]: topRatedSuccess,
-  [Types.TOP_RATED_FAILURE]: topRatedFailure,
+  [Types.TOP_RATED_MOVIE_REQUEST]: topRatedMovieRequest,
+  [Types.TOP_RATED_MOVIE_SUCCESS]: topRatedMovieSuccess,
+  [Types.TOP_RATED_MOVIE_FAILURE]: topRatedMovieFailure,
 
-  [Types.DETAIL_REQUEST]: detailRequest,
-  [Types.DETAIL_SUCCESS]: detailSuccess,
-  [Types.DETAIL_FAILURE]: detailFailure,
+  [Types.DETAIL_MOVIE_REQUEST]: detailMovieRequest,
+  [Types.DETAIL_MOVIE_SUCCESS]: detailMovieSuccess,
+  [Types.DETAIL_MOVIE_FAILURE]: detailMovieFailure,
 });

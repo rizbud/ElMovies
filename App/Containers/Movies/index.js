@@ -40,24 +40,28 @@ const Movies = (props) => {
       style={apply('bg-gray-900')}>
       <StatusBar backgroundColor={apply('dark')} barStyle="light-mode" />
       <HorizontalMovieList
-        isLoading={nowPlaying.fetching}
+        isLoading={nowPlaying?.fetching}
         title="Now Playing"
         data={nowPlaying?.data}
+        type="movie"
       />
       <HorizontalMovieList
-        isLoading={upcoming.fetching}
+        isLoading={upcoming?.fetching}
         title="Upcoming"
         data={upcoming?.data}
+        type="movie"
       />
       <HorizontalMovieList
-        isLoading={popular.fetching}
+        isLoading={popular?.fetching}
         title="Popular"
         data={popular?.data}
+        type="movie"
       />
       <HorizontalMovieList
-        isLoading={topRated.fetching}
+        isLoading={topRated?.fetching}
         title="Top Rated"
         data={topRated?.data}
+        type="movie"
       />
     </ScrollView>
   );
@@ -66,15 +70,15 @@ const Movies = (props) => {
 const mapStateToProps = (state) => ({
   nowPlaying: state.movie.nowPlaying,
   upcoming: state.movie.upcoming,
-  popular: state.movie.popular,
-  topRated: state.movie.topRated,
+  popular: state.movie.popularMovie,
+  topRated: state.movie.topRatedMovie,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getNowPlaying: () => dispatch(MovieActions.nowPlayingRequest()),
   getUpcoming: () => dispatch(MovieActions.upcomingRequest()),
-  getPopular: () => dispatch(MovieActions.popularRequest()),
-  getTopRated: () => dispatch(MovieActions.topRatedRequest()),
+  getPopular: () => dispatch(MovieActions.popularMovieRequest()),
+  getTopRated: () => dispatch(MovieActions.topRatedMovieRequest()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Movies);

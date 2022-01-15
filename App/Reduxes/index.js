@@ -7,6 +7,7 @@ import ReduxPersist from '@Config/ReduxPersist';
 /* ------------- Assemble The Reducers ------------- */
 export const reducers = combineReducers({
   movie: require('./MovieRedux').reducer,
+  tv: require('./TVRedux').reducer,
 });
 
 export default () => {
