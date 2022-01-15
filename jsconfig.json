@@ -8,7 +8,7 @@
       "@Images": ["Images"],
       "@Components/*": ["Components/*"],
       "@Config/*": ["Config/*"],
-      "@Containers/*": ["@Containers/*"],
+      "@Containers/*": ["Containers/*"],
       "@Fixtures/*": ["Fixtures/*"],
       "@Images/*": ["Images/*"],
       "@Lib/*": ["Lib/*"],
