@@ -15,6 +15,7 @@
     [
       "module-resolver",
       {
+        "root": ["./App"],
         "alias": {
           "@Components": "./App/Components",
           "@Config": "./App/Config",

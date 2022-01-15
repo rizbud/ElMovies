@@ -6,6 +6,8 @@ module.exports = {
       files: ['**/*.js'],
       rules: {
         'react-hooks/exhaustive-deps': 'off',
+        'react/react-in-jsx-scope': 'off',
+        'react/jsx-filename-extension': [1, {extensions: ['.js', '.jsx']}],
       },
     },
   ],

@@ -1,6 +1,6 @@
-import React, {memo} from 'react';
+import {memo} from 'react';
 import {StatusBar as AppBar, View, Platform} from 'react-native';
-import {getStatusBarHeight} from '@utils/iphone-x';
+import {getStatusBarHeight} from '@Lib/Iphone-X';
 
 const StatusBar = (props) => {
   const {backgroundColor} = props;

@@ -3,7 +3,7 @@ import {StatusBar} from '@Components';
 
 import {apply} from '@Themes/OsmiProvider';
 
-const Movies = (props) => {
+const TVShow = (props) => {
   return (
     <View style={apply('flex bg-gray-900')}>
       <StatusBar backgroundColor={apply('dark')} barStyle="light-mode" />
@@ -12,4 +12,4 @@ const Movies = (props) => {
   );
 };
 
-export default Movies;
+export default TVShow;
