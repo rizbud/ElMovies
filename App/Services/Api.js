@@ -16,14 +16,26 @@ const create = (baseURL = Env.BASE_URL) => {
     timeout: 15000,
   });
 
-  // const getRoot = () => api.get('');
-  // const getRate = () => api.get('rate_limit');
-  // const getUser = (username) => api.get('search/users', {q: username});
+  const getNowPlayingMovie = () =>
+    api.get(`/movie/now_playing?api_key=${api_key}`);
+  const getUpcomingMovie = () => api.get(`/movie/upcoming?api_key=${api_key}`);
+  const getPopularMovie = () => api.get(`/movie/popular?api_key=${api_key}`);
+  const getTopRatedMovie = () => api.get(`/movie/top_rated?api_key=${api_key}`);
+
+  const getOnAirTV = () => api.get(`/tv/on_the_air?api_key=${api_key}`);
+  const getAirTodayTV = () => api.get(`/tv/airing_today?api_key=${api_key}`);
+  const getPopularTV = () => api.get(`/tv/popular?api_key=${api_key}`);
+  const getTopRatedTV = () => api.get(`/tv/top_rated?api_key=${api_key}`);
 
   return {
-    // getRoot,
-    // getRate,
-    // getUser,
+    getNowPlayingMovie,
+    getUpcomingMovie,
+    getPopularMovie,
+    getTopRatedMovie,
+    getOnAirTV,
+    getAirTodayTV,
+    getPopularTV,
+    getTopRatedTV,
 
     api,
   };

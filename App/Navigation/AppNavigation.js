@@ -80,10 +80,7 @@ const AppNavigation = () => {
         <Stack.Screen
           name="Detail"
           component={DetailScreen}
-          options={(route) => {
-            console.log(route);
-            return {title: route?.param?.title};
-          }}
+          options={({route}) => ({title: route?.params?.title})}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,26 +1,25 @@
-import Config from './DebugConfig'
-import Reactotron from 'reactotron-react-native'
-import Immutable from 'seamless-immutable'
-import { reactotronRedux as reduxPlugin } from 'reactotron-redux'
-import sagaPlugin from 'reactotron-redux-saga'
-import { name } from '../../app.json'
+import Config from './DebugConfig';
+import Reactotron from 'reactotron-react-native';
+import Immutable from 'seamless-immutable';
+import {reactotronRedux as reduxPlugin} from 'reactotron-redux';
+import sagaPlugin from 'reactotron-redux-saga';
+import {name} from '../../app.json';
 
-const reactotron = Reactotron
-  .configure({ name })
+const reactotron = Reactotron.configure({name, host: '192.168.43.165'})
   .useReactNative()
-  .use(reduxPlugin({ onRestore: Immutable }))
-  .use(sagaPlugin())
+  .use(reduxPlugin({onRestore: Immutable}))
+  .use(sagaPlugin());
 
 if (Config.useReactotron) {
   // https://github.com/infinitered/reactotron for more options!
 
-  reactotron.connect()
+  reactotron.connect();
 
   // Let's clear Reactotron on every time we load the app
-  reactotron.clear()
+  reactotron.clear();
 
   // Totally hacky, but this allows you to not both importing reactotron-react-native
   // on every file.  This is just DEV mode, so no big deal.
 }
-export default reactotron
-console.tron = reactotron
+export default reactotron;
+console.tron = reactotron;

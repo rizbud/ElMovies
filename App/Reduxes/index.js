@@ -5,7 +5,9 @@ import rootSaga from '@Sagas/';
 import ReduxPersist from '@Config/ReduxPersist';
 
 /* ------------- Assemble The Reducers ------------- */
-export const reducers = combineReducers({});
+export const reducers = combineReducers({
+  movie: require('./MovieRedux').reducer,
+});
 
 export default () => {
   let finalReducers = reducers;

@@ -3,7 +3,7 @@ import DebugConfig from '@Config/DebugConfig';
 import {Component} from 'react';
 import {Provider} from 'react-redux';
 import RootContainer from './RootContainer';
-import createStore from '@Redux';
+import createStore from '@Reduxes';
 
 // create our store
 const store = createStore();

@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import {connect} from 'react-redux';
-import StartupActions from '@Redux/StartupRedux';
+import StartupActions from '@Reduxes/StartupRedux';
 import ReduxPersist from '@Config/ReduxPersist';
 import AppNavigation from '@Navigation/AppNavigation';
 import {SafeAreaView} from 'react-native-safe-area-context';

@@ -13,7 +13,7 @@
       "@Images": ["Images"],
       "@Lib/*": ["Lib/*"],
       "@Navigation/*": ["Navigation/*"],
-      "@Redux/*": ["Redux/*"],
+      "@Reduxes/*": ["Reduxes/*"],
       "@Sagas/*": ["Sagas/*"],
       "@Services/*": ["Services/*"],
       "@Themes/*": ["Themes/*"],

@@ -3,19 +3,28 @@ import {HorizontalMovieList} from '@Components';
 import Image from 'react-native-fast-image';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Images from '@Images';
 
 import {apply} from '@Themes/OsmiProvider';
 import styles from './style';
 import {scaleWidth} from 'osmicsx';
+import {minutesToTime} from '@Lib/TextUtils';
 
 const Detail = (props) => {
+  const {
+    route: {params},
+  } = props;
+
   return (
     <ScrollView
       style={apply('bg-gray-900')}
+      showsVerticalScrollIndicator={false}
       contentContainerStyle={apply('pb-4')}>
       <Image
         source={{
-          uri: 'https://bodybigsize.com/wp-content/uploads/2020/03/noimage-14.png',
+          uri:
+            `${Images.prefix}${params?.backdrop_path}` ||
+            'https://bodybigsize.com/wp-content/uploads/2020/03/noimage-14.png',
         }}
         style={[styles.backdrop, {height: scaleWidth(56)}]}
         resizeMode="stretch"
@@ -25,10 +34,10 @@ const Detail = (props) => {
           <Image
             style={[
               styles.image,
-              {height: scaleWidth(40), marginTop: -scaleWidth(10)},
+              {height: scaleWidth(41), marginTop: -scaleWidth(9)},
             ]}
             source={{
-              uri: 'https://image.tmdb.org/t/p/w500/AtOPDh4wzbqLczLPOX5QxWnBxE1.jpg',
+              uri: `${Images.prefix}${params?.poster_path}`,
             }}
           />
           <View style={apply('mt-2')}>
@@ -39,6 +48,10 @@ const Detail = (props) => {
                 (item, index) => `${item?.name}${index !== 1 ? ', ' : ''}`,
               )}
             </Text>
+            <View style={styles.rowCenter}>
+              <Icon size={14} name="clock" color={apply('gray-500')} />
+              <Text style={styles.date}>{minutesToTime(112)}</Text>
+            </View>
             <View style={styles.rowCenter}>
               <Icon size={14} name="calendar" color={apply('gray-500')} />
               <Text style={styles.date}>

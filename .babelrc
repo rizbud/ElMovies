@@ -23,7 +23,7 @@
           "@Images": "./App/Images",
           "@Lib": "./App/Lib",
           "@Navigation": "./App/Navigation",
-          "@Redux": "./App/Redux",
+          "@Reduxes": "./App/Reduxes",
           "@Sagas": "./App/Sagas",
           "@Services": "./App/Services",
           "@Themes": "./App/Themes"
