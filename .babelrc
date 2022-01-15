@@ -19,7 +19,6 @@
           "@Components": "./App/Components",
           "@Config": "./App/Config",
           "@Containers": "./App/Containers",
-          "@Fixtures": "./App/Fixtures",
           "@Images": "./App/Images",
           "@Lib": "./App/Lib",
           "@Navigation": "./App/Navigation",

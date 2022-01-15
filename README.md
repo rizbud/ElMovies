@@ -22,7 +22,6 @@ osmi-app
 │   ├── Components
 │   ├── Config
 │   ├── Containers
-│   ├── Fixtures
 │   ├── Images
 │   ├── Lib
 │   ├── Navigation
@@ -70,7 +69,6 @@ App
 ├── Components
 ├── Config
 ├── Containers
-├── Fixtures
 ├── Images
 ├── Lib
 ├── Navigation
@@ -85,8 +83,6 @@ App
 **Config** This is where all of your app configuration located like Reactotron config, persist, etc.
 
 **Containers** This is where your screen components will live. A screen is a React component which will take up the entire screen and be part of the navigation hierarchy. Each screen will have a directory containing the `.js` file, along with style file inside `Styles` folder.
-
-**Fixtures** This is where your dummy api will be located. All data stored inside `.json` file.
 
 **Images** This is where all of your local image assets will live. Store all local image asset file and register each image inside `index.js` file.
 
