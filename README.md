@@ -1,4 +1,18 @@
-# Welcome to your new Osmi Kit App!
+# ElMovies!
+## Build with OsmiCLI - A Boilerplate for React Native
+
+[![react-native](https://img.shields.io/badge/react--native-0.64.2-informational.svg?style=flat)](http://reactnative.dev/)
+[![js-standard-style](https://img.shields.io/badge/code--style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
+[![mit-license](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](http://github.com/rizbud/ElMovies/blob/master/LICENSE)
+[![osmi-cli](https://img.shields.io/badge/osmi-1.3.1-yellow.svg?style=flat)](http://github.com/OsmiCSX/osmi)
+  
+    
+<p align="center">
+<img src="https://i.imgur.com/tayTntL.png" width="360px" height="760px" /><br/>
+<img src="https://i.imgur.com/aDjLRWe.png" width="360px" height="760px" />
+<img src="https://i.imgur.com/1XY9s5P.png" width="360px" height="760px" />
+<img src="https://i.imgur.com/pDMmlw7.png" width="360px" height="760px" />
+</p>
 
 ## The latest and greatest boilerplate for LibsCode & CloudGakkai opinions
 This is the boilerplate that [LibsCode](https://libscode.com/) and [CloudGakkai](https://cloudgakkai.dev/) uses as a way to test bleeding-edge changes to our React Native stack.
