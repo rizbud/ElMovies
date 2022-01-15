@@ -7,9 +7,9 @@ const headers = {
   'Content-Type': 'application/json',
 };
 
-const api_key = Env.API_KEY;
+const api_key = 'f7b67d9afdb3c971d4419fa4cb667fbf';
 
-const create = (baseURL = Env.BASE_URL) => {
+const create = (baseURL = 'https://api.themoviedb.org/3/') => {
   const api = apisauce.create({
     baseURL,
     headers,

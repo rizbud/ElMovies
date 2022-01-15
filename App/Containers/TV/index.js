@@ -41,13 +41,13 @@ const TVShow = (props) => {
       <StatusBar backgroundColor={apply('dark')} barStyle="light-mode" />
       <HorizontalMovieList
         isLoading={onAir?.fetching}
-        title="On Air"
+        title="On the Air"
         data={onAir?.data}
         type="tv"
       />
       <HorizontalMovieList
         isLoading={airToday?.fetching}
-        title="Air Today"
+        title="Airing Today"
         data={airToday?.data}
         type="tv"
       />

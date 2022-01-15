@@ -15,6 +15,10 @@ target 'ElMovies' do
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
 
+  pod 'react-native-shimmer', :path => '../node_modules/react-native-shimmer'
+
+  pod 'react-native-config', :path => '../node_modules/react-native-config'
+
   target 'ElMoviesTests' do
     inherit! :complete
     # Pods for testing

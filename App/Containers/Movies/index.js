@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import MovieActions from '@Reduxes/MovieRedux';
 import {RefreshControl, ScrollView} from 'react-native';
 import {StatusBar, HorizontalMovieList} from '@Components';
+import Config from 'react-native-config';
 
 import {apply} from '@Themes/OsmiProvider';
 
@@ -18,6 +19,11 @@ const Movies = (props) => {
     getPopular,
     getTopRated,
   } = props;
+  console.log(nowPlaying);
+  console.log(popular);
+  console.log(upcoming);
+  console.log(topRated);
+  console.log(Config);
 
   useEffect(() => {
     _getData();
