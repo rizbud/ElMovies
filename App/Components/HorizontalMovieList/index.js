@@ -6,13 +6,12 @@ import styles from './style';
 import {apply} from '@Themes/OsmiProvider';
 
 const HorizontalMovieList = (props) => {
-  const {data, title, showAll} = props;
+  const {data, title} = props;
 
   return (
     <View style={apply('mt-4')}>
       <View style={styles.row}>
         <Text style={styles.title}>{title}</Text>
-        {showAll && <Text style={styles.showAll}>Lihat Semua</Text>}
       </View>
       <FlatList
         horizontal

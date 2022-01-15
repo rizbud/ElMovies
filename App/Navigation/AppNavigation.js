@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import MoviesScreen from '@Containers/Movies';
 import TVScreen from '@Containers/TV';
+import DetailScreen from '@Containers/Detail';
 
 import {apply} from '@Themes/OsmiProvider';
 
@@ -18,7 +19,7 @@ const TabNavigation = () => {
       swipeEnabled={false}
       tabBarOptions={{
         labelStyle: apply('font-bold'),
-        activeTintColor: apply('white'),
+        activeTintColor: 'white',
         pressColor: apply('gray-300'),
         style: apply('bg-dark'),
         indicatorStyle: apply('bg-white'),
@@ -52,9 +53,38 @@ const AppNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        screenOptions={{headerShown: false}}
+        screenOptions={{
+          headerStyle: apply('bg-dark'),
+          headerTitleStyle: apply('font-bold -ml-4 text-base'),
+          headerTintColor: 'white',
+          cardOverlayEnabled: false,
+          cardStyleInterpolator: ({current, layouts}) => ({
+            cardStyle: {
+              transform: [
+                {
+                  translateX: current.progress.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [layouts.screen.width, 0],
+                  }),
+                },
+              ],
+            },
+          }),
+        }}
         initialRouteName="Tab">
-        <Stack.Screen name="Tab" component={TabNavigation} />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Tab"
+          component={TabNavigation}
+        />
+        <Stack.Screen
+          name="Detail"
+          component={DetailScreen}
+          options={(route) => {
+            console.log(route);
+            return {title: route?.param?.title};
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
